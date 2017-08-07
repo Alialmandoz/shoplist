@@ -5,6 +5,8 @@
     <title>detalle post</title>
 </head>
 <body>
-detalle post
+{% for post in posts %}
+    <ul>{{ post.texto }}</ul>
+{% endfor %}
 </body>
 </html>

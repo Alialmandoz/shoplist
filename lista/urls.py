@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^crear_post/$', views.crear_post, name='crear_post'),
     #
     # detalle de post
-    url(r'^detalle/(?P<pk>[-\d]+)/$', views.detalle_post, name='detalle_post'),
+    url(r'^detalle/$', views.detalle_post, name='detalle_post'),
     #
     # buscar post
     url(r'^post/buscar/$', views.buscar_post, name='buscar_post'),

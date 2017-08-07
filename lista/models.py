@@ -4,4 +4,4 @@ from django.db import models
 
 
 class Post(models.Model):
-    estado = models.BooleanField(null=False, default=False)
+    texto = models.TextField(null=True, blank=True, )
