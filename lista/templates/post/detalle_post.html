@@ -6,7 +6,8 @@
 </head>
 <body>
 {% for post in posts %}
-    <ul>{{ post.texto }}</ul>
+    <ul>{{ post.producto }} {{ post.precio }}</ul>
 {% endfor %}
+<a href="{% url 'lista:index' %}">ir al inicio</a>
 </body>
 </html>

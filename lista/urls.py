@@ -10,6 +10,10 @@ urlpatterns = [
     # Crear cliente
     url(r'^crear_post/$', views.crear_post, name='crear_post'),
     #
+    # add product
+    url(r'^add_product/$', views.add_product, name='add_product'),
+    #
+
     # detalle de post
     url(r'^detalle/$', views.detalle_post, name='detalle_post'),
     #
