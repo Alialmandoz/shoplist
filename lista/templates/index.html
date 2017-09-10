@@ -9,8 +9,15 @@ El index<br>
 <br>
 Click para <a href="{% url 'lista:crear_post' %}">Nueva compra</a><br>
 <br>
-Click para <a href="{% url 'lista:detalle_post' %}">ver lista de posts</a><br>
+
 <br>
 Click para <a href="{% url 'lista:buscar_post'%}">buscar un post</a><br>
+
+
+{% for compra in compras %}
+    <ul><a href="{% url 'lista:detalle_post' pk=compra.pk %}"> {{ compra }} </a></ul>
+
+
+{% endfor %}
 </body>
 </html>

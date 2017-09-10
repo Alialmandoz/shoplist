@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from lista.forms import PostForm, CompraForm
 
 # Create your views here.
@@ -6,38 +6,43 @@ from lista.models import Post, Compra
 
 
 def index(request):
-    return render(request, 'index.html')
+    compras = get_list_or_404(Compra)
+    return render(request, 'index.html', {'compras': compras})
 
 
 def crear_post(request):
-
+    form = CompraForm(request.POST or None)
     if request.method == "POST":
-        form = PostForm(request.POST or None)
         if form.is_valid():
-            form.save()
-            return redirect('add_product')
-    else:
-        form = CompraForm()
+            compra = form.save()
+            print(" ********************* compra creada exitosamente ********************* ")
+            return redirect('lista:agregar', pk=compra.pk)
+        else:
+            print(" ********************* invalid form ********************* ")
+            form = CompraForm()
     return render(request, 'post/crear_post.html', {'form': form})
 
 
-def add_product(request, pk):
+def agregar(request, pk):
+    compra = Compra.objects.get(pk=pk)
+    productos = compra.post_set.all()
+    form = PostForm(request.POST or None)
     if request.method == "POST":
-        form = PostForm(request.POST or None)
         if form.is_valid():
             prod_added = form.save(commit=False)
-            prod_added.orden = orden
+            prod_added.compra = compra
             prod_added = form.save()
-            return redirect('orden', pk=orden.pk)
-            return render(request, 'post/detalle_post.html', {'posts': posts})
+            print(" ********************* " + str(prod_added) + " agregado exitosamente ********************* ")
+            return redirect('lista:agregar', pk=compra.pk)
     else:
         form = PostForm()
-    return render(request, 'post/add_product.html', {'form': form})
+
+    return render(request, 'post/add_product.html', {'form': form, 'productos': productos})
 
 
-
-def detalle_post(request):
-    posts = Post.objects.all()
+def detalle_post(request, pk):
+    posts = get_list_or_404(Post, compra=pk)
+    print('*********' + str(posts) + '*********')
     return render(request, 'post/detalle_post.html', {'posts': posts})
 
 

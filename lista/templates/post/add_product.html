@@ -2,17 +2,23 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>crear_post</title>
+    <title>agregar producto </title>
 </head>
 <body>
-crear_post
+agregar producto
 <form role="form" action="" method="post" class="form-horizontal">
     {% csrf_token %}
     {{ form.as_p }}
     <div>
-        <button class="btn btn-primary text-center" type="submit">crear</button>
+        <button class="btn btn-primary text-center" type="submit">agregar</button>
     </div>
 </form>
+<p>lista de productos</p>
+{% for p in productos %}
+    <ul>{{ p }} : ${{ p.precio }}</ul>
+{% endfor %}
+
+
 <a href="{% url 'lista:index' %}">ir al inicio</a>
 </body>
 </html>
