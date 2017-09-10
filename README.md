@@ -1,7 +1,3 @@
-# blog_Ivan
-Mis pasos para crear un blog con Django siguiendo el tutorial de django girls
-
-https://tutorial.djangogirls.org/es/
-
-Hasta ahora lo que hice fue crear una estuctura muy basica donde estan sentadas las pautas como para crear y borrar post
-de una "lista" de posts...
+# Lista de precios segun compra
+la idea de la app es que cada vez que voy al super anoto en la app que compre y suprecio.
+de este modo puedo ver si subio o bajo elprecio de un producto desde la ultima compra...
