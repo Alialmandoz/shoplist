@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
-from lista.forms import PostForm, CompraForm
+from lista.forms import PostForm, CompraForm, ProductoForm
 
 # Create your views here.
-from lista.models import Post, Compra
+from lista.models import Post, Compra, Producto
 
 
 def index(request):
-    compras = get_list_or_404(Compra)
+    compras = Compra.objects.all()
     return render(request, 'index.html', {'compras': compras})
 
 
@@ -40,18 +40,33 @@ def agregar(request, pk):
     return render(request, 'post/add_product.html', {'form': form, 'productos': productos})
 
 
-def detalle_post(request, pk):
-    posts = get_list_or_404(Post, compra=pk)
-    print('*********' + str(posts) + '*********')
-    return render(request, 'post/detalle_post.html', {'posts': posts})
+def detalle_compra(request, pk):
+    compra = get_list_or_404(Post, compra=pk)
+    post = Compra.objects.get(pk=pk)
+    print('*********' + str(compra) + '*********')
+    return render(request, 'post/detalle_compra.html', {'compra': compra, 'post': post})
+
+
+def cargar_producto(request):
+    productos = Producto.objects.all()
+    compras = Compra.objects.all()
+    form = ProductoForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+        return redirect('lista:index')
+    return render(request, 'post/cargar_producto.html', {'form': form, 'productos': productos, 'compras': compras})
 
 
 def buscar_post(request):
     return render(request, 'post/buscar_post.html')
 
 
-def editar_post(request, pk):
-    return render(request, 'post/editar_post.html')
+def editar_compra(request, pk):
+    compra = Post.objects.get(pk=pk)
+    form = CompraForm(request.POST or None)
+
+    return render(request, 'post/editar_compra.html')
 
 
 def borrar_post(request, pk):

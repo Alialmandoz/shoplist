@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from lista.models import Post, Compra
+from lista.models import *
 
 
 class CompraForm(ModelForm):
@@ -11,4 +11,10 @@ class CompraForm(ModelForm):
 class PostForm(ModelForm):
     class Meta:
         model = Post
-        fields = ('producto', 'precio')
+        fields = ('producto',)
+
+
+class ProductoForm(ModelForm):
+    class Meta:
+        model = Producto
+        fields = ('descripcion', 'marca', 'precio',)

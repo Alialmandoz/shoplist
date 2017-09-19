@@ -13,9 +13,13 @@ Click para <a href="{% url 'lista:crear_post' %}">Nueva compra</a><br>
 <br>
 Click para <a href="{% url 'lista:buscar_post'%}">buscar un post</a><br>
 
+<br>
+Click para <a href="{% url 'lista:cargar_producto'%}">cargar nuevo producto</a><br>
+
+
 
 {% for compra in compras %}
-    <ul><a href="{% url 'lista:detalle_post' pk=compra.pk %}"> {{ compra }} </a></ul>
+    <ul><a href="{% url 'lista:detalle_compra' pk=compra.pk %}"> {{ compra }} </a></ul>
 
 
 {% endfor %}

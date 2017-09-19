@@ -8,19 +8,23 @@ class Compra(models.Model):
     fecha_compra = models.DateField(default=datetime.now, blank=True)
 
     def __str__(self):
-        return str(self.fecha_compra)
+        return str(self.pk) + ": " + str(self.fecha_compra)
+
+
+class Producto(models.Model):
+    descripcion = models.TextField(null=True, blank=True,)
+    marca = models.TextField(null=True, blank=True,)
+    precio = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return str(self.descripcion + " " + self.marca)
 
 
 class Post(models.Model):
-    producto = models.TextField(null=True, blank=True, )
-    precio = models.IntegerField(null=True, blank=True)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     compra = models.ForeignKey(Compra, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.producto)
 
-    
-class Producto(models.Model):
-    producto = ""
-    marca = ""
-    precio = ""
+
