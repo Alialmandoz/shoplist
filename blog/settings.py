@@ -25,7 +25,7 @@ SECRET_KEY = 'ckh&*ddb&sy_rny*$)-laju=x+h+vjxn&2c^6k(su%q3%fdk@o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-'devalialmandoz.pythonanywhere.com'
+ALLOWED_HOSTS = ['devalialmandoz.pythonanywhere.com', ]
 
 
 # Application definition
