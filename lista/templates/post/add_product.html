@@ -1,24 +1,28 @@
-{% extends 'base.html' %}
-
-{% block body %}
-        
-<h1>agregar producto</h1>
-<form role="form" action="" method="post" class=<div class="form-group">
-
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div>
-        <button class="btn btn-primary text-center" type="submit">agregar</button>
-    </div>
-</form>
-<p>lista de productos</p>
-{% for p in productos %}
-    <ul>{{ p }} : ${{ p.producto.precio }}</ul>
-{% endfor %}
+{% extends 'base.html' %} {% block body %}
 
 
-<a href="{% url 'lista:index' %}">ir al inicio</a>
+<br>
+<div class="container container-fluid">
+
+    <h1>agregar producto</h1>
+    <form role="form" action="" method="post" class=<div class="form-group">
+
+        {% csrf_token %} {{ form.as_p }}
+        <div>
+            <button class="btn btn-primary text-center" type="submit">agregar</button>
+        </div>
+    </form>
     
+    
+    <h5>lista de productos</h5>
+    <ul class="list-group">
+        {% for p in productos %}
+        <li class="list-group-item">{{ p }} : ${{ p.producto.precio }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'lista:index' %}">ir al inicio</a>
+
+</div>
+
 {% endblock body %}
-</body>
-</html>
