@@ -13,3 +13,5 @@ lista/__pycache__/urls.cpython-36.pyc
 lista/__pycache__/views.cpython-36.pyc
 lista/migrations/__pycache__/0002_auto_20170806_2215.cpython-36.pyc
 lista/migrations/__pycache__/__init__.cpython-36.pyc
+
+*.sqlite3
