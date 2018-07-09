@@ -1,27 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>the index</title>
-</head>
-<body>
-El index<br>
+{% extends 'base.html' %} {% block body %}
 <br>
-Click para <a href="{% url 'lista:crear_post' %}">Nueva compra</a><br>
-<br>
+<div class="container-fluid">
+    <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action">
+            <a href="{% url 'lista:crear_post' %}">Nueva compra</a>
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">
+            <a href="{% url 'lista:buscar_post'%}">buscar un post</a>
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">
+            <a href="{% url 'lista:cargar_producto'%}">cargar nuevo producto</a>
+        </button>
+    </div>
 
-<br>
-Click para <a href="{% url 'lista:buscar_post'%}">buscar un post</a><br>
+    <br>
 
-<br>
-Click para <a href="{% url 'lista:cargar_producto'%}">cargar nuevo producto</a><br>
+{% comment %} <h5 class="mb-1">{{ compra.fecha_compra }}</h5>
+<a href="{% url 'lista:detalle_compra' pk=compra.pk %}"> {{ compra }} </a> {% endcomment %}
+
+    
+
+    <ul class="list-unstyled">
+        {% for compra in compras %}
+
+            <li class="media">
+                <a class="d-flex" href="">
+                    <img src="https://picsum.photos/50/50/?gravity=east" alt="">
+                </a>
+                <div class="media-body">
+                        <h5>{{ compra.fecha_compra }}</h5>
+                    
+                    {% for producto in compra.productos %}
+                        <p>{{producto.descripcion}}</p>
+                        
+                    {% endfor %}
+                        
+                </div>
+            </li>
+        {% endfor %} 
+        
+      </ul>
+
+</div>
 
 
 
-{% for compra in compras %}
-    <ul><a href="{% url 'lista:detalle_compra' pk=compra.pk %}"> {{ compra }} </a></ul>
-
-
-{% endfor %}
-</body>
-</html>
+{% endblock body %}
