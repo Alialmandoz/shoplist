@@ -7,7 +7,14 @@ from lista.models import Post, Compra, Producto
 
 def index(request):
     compras = Compra.objects.all()
-    return render(request, 'index.html', {'compras': compras})
+    
+    listadecompras={}
+    for compra in compras:
+        listadecompras[compra] = compra.post_set.all()
+
+
+    print(listadecompras)
+    return render(request, 'index.html', {'listadecompras': listadecompras })
 
 
 def crear_post(request):
