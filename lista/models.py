@@ -12,8 +12,8 @@ class Compra(models.Model):
 
 
 class Producto(models.Model):
-    descripcion = models.TextField(null=True, blank=True,)
-    marca = models.TextField(null=True, blank=True,)
+    descripcion = models.CharField(max_length=200, null=True, blank=True,)
+    marca = models.CharField(max_length=200, null=True, blank=True,)
     precio = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
