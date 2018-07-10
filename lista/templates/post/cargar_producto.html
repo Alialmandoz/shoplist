@@ -1,22 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %} {% load widget_tweaks %} {% block body %}
+<div class="container  container-fluid">
 
-<form role="form" action="" method="post" class="form-horizontal">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div>
-        <button class="btn btn-primary text-center" type="submit">cargar</button>
+
+    <div class="form-group">
+        <form role="form" action="" method="post" class="form-horizontal">
+            {% csrf_token %} 
+
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field|add_class:'form-control input-xlarge' }} {% for error in field.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <div>
+                <button class="btn btn-primary text-center" type="submit">cargar</button>
+            </div>
+        </form>
     </div>
-</form>
 
-{% for p in productos %}
-    <ul>{{ p | title }}</ul>
-{% endfor %}
 
-</body>
-</html>
+    <ul class="list-group">
+        {% for p in productos %}
+        <li class="list-group-item">{{ p | title }}</li>
+        {% endfor %}
+
+    </ul>
+
+</div>
+
+{% endblock body %}
